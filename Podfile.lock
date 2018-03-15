@@ -58,20 +58,19 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - ObjectMapper (3.1.0)
-  - PromiseKit (4.5.2):
-    - PromiseKit/Foundation (= 4.5.2)
-    - PromiseKit/QuartzCore (= 4.5.2)
-    - PromiseKit/UIKit (= 4.5.2)
-  - PromiseKit/Alamofire (4.5.2):
+  - PromiseKit (6.1.0):
+    - PromiseKit/CorePromise (= 6.1.0)
+    - PromiseKit/Foundation (= 6.1.0)
+    - PromiseKit/UIKit (= 6.1.0)
+  - PromiseKit/Alamofire (6.1.0):
     - Alamofire (~> 4.0)
     - PromiseKit/CorePromise
-  - PromiseKit/CorePromise (4.5.2)
-  - PromiseKit/Foundation (4.5.2):
+  - PromiseKit/CorePromise (6.1.0)
+  - PromiseKit/Foundation (6.1.0):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.5.2):
+  - PromiseKit/UIKit (6.1.0):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.5.2):
-    - PromiseKit/CorePromise
+  - SwiftyBeaver (1.5.1)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
@@ -85,8 +84,9 @@ DEPENDENCIES:
   - HanekeSwift (from `https://github.com/Haneke/HanekeSwift.git`, branch `feature/swift-3`)
   - LocationPicker
   - ObjectMapper
-  - PromiseKit (~> 4.0)
+  - PromiseKit (~> 6.0)
   - PromiseKit/Alamofire
+  - SwiftyBeaver
   - SwiftyJSON
 
 EXTERNAL SOURCES:
@@ -121,9 +121,10 @@ SPEC CHECKSUMS:
   LocationPicker: 94dbd15ee053646d5c275d44b4dfce8634d66041
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
-  PromiseKit: 743e497a5f505a470d3bbbf4ce0663c1268af0a4
+  PromiseKit: cf84274e6d2bec1d42e21ade146645752b0b7bed
+  SwiftyBeaver: 4f74563624b2c1e821c522c54142b5dd5ebb0f30
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 62c2279b40131d13fffb8a3b929cf080cdc719a0
+PODFILE CHECKSUM: d1e6f689a7b01146246bad989bf6a969bfc0ed2a
 
 COCOAPODS: 1.4.0

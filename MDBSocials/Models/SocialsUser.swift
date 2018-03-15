@@ -9,39 +9,31 @@
 import Foundation
 import UIKit
 import PromiseKit
+import ObjectMapper
 
-class SocialsUser {
+class SocialsUser: Mappable {
     var name: String?
     var email: String?
     var imageUrl: String?
     var id: String?
     var username: String?
     var stringsPostsInterested : [String]?
+    var stringsPostsCreated : [String]?
     
+    required init?(map: Map) {
+        
+    }
+    
+    func mapping(map: Map) { 
+        id <- map["id"]
+        name <- map["name"]
+        imageUrl <- map["imageUrl"]
+        email <- map["email"]
+        username <- map["username"]
+        stringsPostsInterested <- map["postsInterested"]
+        stringsPostsCreated <- map["postsCreated"]
+    }
     init(id: String, userDict: [String:Any]?) {
-        self.id = id
-        if userDict != nil {
-            if let name = userDict!["name"] as? String {
-                self.name = name
-            }
-            if let imageUrl = userDict!["imageUrl"] as? String {
-                self.imageUrl = imageUrl
-            }
-            if let email = userDict!["email"] as? String {
-                self.email = email
-            }
-            if let username = userDict!["username"] as? String {
-                self.username = username
-            }
-            if let postsInterested = userDict!["postsInterested"] as? [String]{
-                self.stringsPostsInterested = postsInterested
-            }
-        }
+        
     }
-    
-    static func getUser(withId: String) -> Promise<SocialsUser> {
-        return FirebaseAPIClient.fetchUser(id: withId)
-    }
-    
-    
 }

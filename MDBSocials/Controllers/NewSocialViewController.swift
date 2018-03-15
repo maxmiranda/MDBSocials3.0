@@ -41,8 +41,8 @@ class NewSocialViewController: UIViewController {
         if let currUser = Auth.auth().currentUser {
             uid = currUser.uid
             firstly {
-                return SocialsUser.getUser(withId: uid)
-            }.then {user1 in
+                return RestAPIClient.fetchUser(id: uid)
+            }.done { user1 in
                 self.user = user1
             }
         }
@@ -126,7 +126,7 @@ class NewSocialViewController: UIViewController {
         if postTextField.text != "" && postDescriptionField.text != "" && eventImageView.image != nil && selectedLocation != nil {
             let eventImageData = UIImageJPEGRepresentation(eventImageView.image!, 0.1)
             let date = Utils.createOverallDateString(date: datePicker.date)
-            FirebaseAPIClient.createNewPost(postText: postTextField.text!, postDescription: postDescriptionField.text!, date: date, location: selectedLocation, poster: user.name!, imageData: eventImageData!, posterId: uid)
+            RestAPIClient.createNewPost(text: postTextField.text!, description: postDescriptionField.text!, date: date, location: selectedLocation, poster: user.name!, imageData: eventImageData!, posterId: uid)
             self.dismiss(animated: true, completion: nil)
         } else {
             let alert = UIAlertController(title: "Error", message: "Please fill in all fields before adding a post.", preferredStyle: UIAlertControllerStyle.alert)

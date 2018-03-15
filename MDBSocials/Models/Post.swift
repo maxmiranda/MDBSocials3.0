@@ -13,7 +13,6 @@ import FirebaseStorage
 import ObjectMapper
 import PromiseKit
 
-
 class Post: Mappable {
     var text: String?
     var date: Date?
@@ -34,7 +33,7 @@ class Post: Mappable {
     required init?(map: Map) {
         
     }
-    func mapping(map: Map) { // have to look at what it's initialized with and make sure that you're covering everything, cuz I know you're not here
+    func mapping(map: Map) { 
         id <- map["id"]
         numInterested <- map["numInterested"]
         description <- map["description"]

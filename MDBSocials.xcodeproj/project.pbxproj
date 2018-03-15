@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		035E924D05DFB4F789373534 /* Pods_MDBSocials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE70B1EDCD72E1F5F8FC57F7 /* Pods_MDBSocials.framework */; };
 		994F762365D3E920FC531C74 /* Pods_MDBSocialsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2888E81D5564FB20E9AE5D5 /* Pods_MDBSocialsUITests.framework */; };
+		9F0772512057828B0061215B /* DarkSkyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0772502057828B0061215B /* DarkSkyAPI.swift */; };
+		9F07725320588D030061215B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F07725220588D020061215B /* GoogleService-Info.plist */; };
+		9F077257205898CA0061215B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F077256205898CA0061215B /* Colors.swift */; };
+		9F07727C2059DC960061215B /* RestAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F07727B2059DC960061215B /* RestAPIClient.swift */; };
 		9F230490204BC7E600A02661 /* WhosInterestedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23048F204BC7E600A02661 /* WhosInterestedController.swift */; };
 		9F3C1578203ECC1F00A423B1 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1577203ECC1F00A423B1 /* PostTableViewCell.swift */; };
 		9F3C157A203F42AF00A423B1 /* UITextViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C1579203F42AF00A423B1 /* UITextViewPlaceholder.swift */; };
@@ -24,7 +28,6 @@
 		9FF21BC5203E5B93005F51DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FF21BC3203E5B93005F51DA /* LaunchScreen.storyboard */; };
 		9FF21BD0203E5B93005F51DA /* MDBSocialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF21BCF203E5B93005F51DA /* MDBSocialsTests.swift */; };
 		9FF21BDB203E5B93005F51DA /* MDBSocialsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF21BDA203E5B93005F51DA /* MDBSocialsUITests.swift */; };
-		9FF21BE9203E7033005F51DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FF21BE8203E7033005F51DA /* GoogleService-Info.plist */; };
 		9FF21BED203E75C9005F51DA /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF21BEC203E75C9005F51DA /* SignUpViewController.swift */; };
 		9FF21BEF203E75DA005F51DA /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF21BEE203E75DA005F51DA /* FeedViewController.swift */; };
 		9FF21BF1203E75FB005F51DA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF21BF0203E75FB005F51DA /* DetailViewController.swift */; };
@@ -56,6 +59,10 @@
 		0D630EE3C29212DA10ED5BB5 /* Pods-MDBSocialsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocialsUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocialsUITests/Pods-MDBSocialsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1AD1364AF370D2CF5CE79515 /* Pods-MDBSocials.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocials.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocials/Pods-MDBSocials.debug.xcconfig"; sourceTree = "<group>"; };
 		1D15139845C5BCF53FAB7846 /* Pods-MDBSocialsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDBSocialsUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MDBSocialsUITests/Pods-MDBSocialsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9F0772502057828B0061215B /* DarkSkyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyAPI.swift; sourceTree = "<group>"; };
+		9F07725220588D020061215B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9F077256205898CA0061215B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		9F07727B2059DC960061215B /* RestAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPIClient.swift; sourceTree = "<group>"; };
 		9F23048F204BC7E600A02661 /* WhosInterestedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhosInterestedController.swift; sourceTree = "<group>"; };
 		9F3C1577203ECC1F00A423B1 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		9F3C1579203F42AF00A423B1 /* UITextViewPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewPlaceholder.swift; sourceTree = "<group>"; };
@@ -77,7 +84,6 @@
 		9FF21BD6203E5B93005F51DA /* MDBSocialsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MDBSocialsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FF21BDA203E5B93005F51DA /* MDBSocialsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDBSocialsUITests.swift; sourceTree = "<group>"; };
 		9FF21BDC203E5B93005F51DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9FF21BE8203E7033005F51DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9FF21BEC203E75C9005F51DA /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		9FF21BEE203E75DA005F51DA /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		9FF21BF0203E75FB005F51DA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				9FF21BF4203E7737005F51DA /* FirebaseAPIClient.swift */,
+				9F07727B2059DC960061215B /* RestAPIClient.swift */,
+				9F0772502057828B0061215B /* DarkSkyAPI.swift */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -187,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				9F3C1579203F42AF00A423B1 /* UITextViewPlaceholder.swift */,
+				9F077256205898CA0061215B /* Colors.swift */,
 			);
 			name = Views;
 			path = MDBSocials/Views;
@@ -226,8 +235,8 @@
 				9FF21BBE203E5B93005F51DA /* Main.storyboard */,
 				9FF21BC1203E5B93005F51DA /* Assets.xcassets */,
 				9FF21BC3203E5B93005F51DA /* LaunchScreen.storyboard */,
+				9F07725220588D020061215B /* GoogleService-Info.plist */,
 				9FF21BC6203E5B93005F51DA /* Info.plist */,
-				9FF21BE8203E7033005F51DA /* GoogleService-Info.plist */,
 			);
 			path = MDBSocials;
 			sourceTree = "<group>";
@@ -377,9 +386,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FF21BC5203E5B93005F51DA /* LaunchScreen.storyboard in Resources */,
-				9FF21BE9203E7033005F51DA /* GoogleService-Info.plist in Resources */,
 				9FF21BC2203E5B93005F51DA /* Assets.xcassets in Resources */,
 				9FF21BC0203E5B93005F51DA /* Main.storyboard in Resources */,
+				9F07725320588D030061215B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +424,7 @@
 				"${BUILT_PRODUCTS_DIR}/LocationPicker/LocationPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -429,6 +439,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LocationPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -575,6 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F3C1578203ECC1F00A423B1 /* PostTableViewCell.swift in Sources */,
+				9F077257205898CA0061215B /* Colors.swift in Sources */,
 				9FEFE25E204A83F400CB9712 /* MyEventsViewController.swift in Sources */,
 				9F230490204BC7E600A02661 /* WhosInterestedController.swift in Sources */,
 				9F3C1582203FB74000A423B1 /* Post.swift in Sources */,
@@ -582,9 +594,11 @@
 				9FEFE25C204A7D7A00CB9712 /* MainTabBarController.swift in Sources */,
 				9FF21BF5203E7737005F51DA /* FirebaseAPIClient.swift in Sources */,
 				9F3C157A203F42AF00A423B1 /* UITextViewPlaceholder.swift in Sources */,
+				9F07727C2059DC960061215B /* RestAPIClient.swift in Sources */,
 				9FC8635D2048F24900340BA5 /* Utils.swift in Sources */,
 				9F3C1583203FB74300A423B1 /* SocialsUser.swift in Sources */,
 				9FF21BED203E75C9005F51DA /* SignUpViewController.swift in Sources */,
+				9F0772512057828B0061215B /* DarkSkyAPI.swift in Sources */,
 				9FF21BBD203E5B93005F51DA /* LogInViewController.swift in Sources */,
 				9FF21BF3203E7608005F51DA /* NewSocialViewController.swift in Sources */,
 				9FF21BF1203E75FB005F51DA /* DetailViewController.swift in Sources */,

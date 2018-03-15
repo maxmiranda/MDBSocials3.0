@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import SwiftyBeaver
+let beaverLog = SwiftyBeaver.self
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        let console = ConsoleDestination()  // log to Xcode Console
+        let cloud = SBPlatformDestination(appID: "YbnQJn", appSecret: "bcDowbnawOdjesijpvwz2kpthz49bhiu", encryptionKey: "wGk0amzhxn4mFhGzkZzzfZef0i9w19jb") // to cloud
+        console.format = "$DHH:mm:ss$d $L $M"
+        beaverLog.addDestination(console)
+        beaverLog.addDestination(cloud)
         return true
     }
 

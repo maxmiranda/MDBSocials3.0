@@ -19,6 +19,7 @@ class UserAuthHelper {
         Auth.auth().signIn(withEmail: email, password: password, completion: { (user: User?, error) in
             if error == nil {
                 withBlock(user)
+                beaverLog.info("User with email: \(email) signed in")
             } else {
                 view.view.isUserInteractionEnabled = true
                 let alert = UIAlertController(title: "Error", message: "This username and password did not match a current user.", preferredStyle: UIAlertControllerStyle.alert)
@@ -29,29 +30,27 @@ class UserAuthHelper {
     }
     
     static func logOut(withBlock: @escaping ()->()) {
-        print("logging out")
         //TODO: Log out using Firebase!
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            beaverLog.info("User logged out.")
             withBlock()
         } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+            beaverLog.error(signOutError)
         }
     }
     
     static func createUser(name: String, username: String, email: String, password: String, imageData: Data?, view: UIViewController, withBlock: @escaping (String) -> ()) {
-        print("Inside of UserAuth create User")
-
         if imageData != nil {
             Auth.auth().createUser(withEmail: email, password: password, completion: { (user: User?, error) in
                 if error == nil {
-                    FirebaseAPIClient.createNewUser(id: (user?.uid)!, name: name, username: username, email: email, imageData: imageData!)
+                    RestAPIClient.createNewUser(id: (user?.uid)!, name: name, username: username, email: email, imageData: imageData!)
                     withBlock((user?.uid)!)
                 }
                 else {
                     view.view.isUserInteractionEnabled = true
-                    print(error.debugDescription)
+                    beaverLog.error(error.debugDescription)
                 }
             })
         }

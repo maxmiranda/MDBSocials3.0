@@ -21,26 +21,13 @@ class MyEventsViewController: UIViewController, UITabBarControllerDelegate {
     var postSelected : Post!
     
     override func viewWillAppear(_ animated: Bool) {
-        if let currUser = Auth.auth().currentUser {
-            let uid = currUser.uid
-            firstly {
-                return SocialsUser.getUser(withId: uid)
-            }.then { currentUser -> Void in
-                if (currentUser.stringsPostsInterested != nil) {
-                    let ids = currentUser.stringsPostsInterested!
-                    self.getPosts(events: ids)
-                }
-            }.then {
-                DispatchQueue.main.async {
-                    self.eventsTableView.reloadData()
-                }
-            }
-        }
+        loadAllEvents()
         setupNavBar()
     }
     override func viewDidLoad() {
         mainTabBarVC = tabBarController as! MainTabBarController
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(loadAllEvents), name: NSNotification.Name(rawValue: "newPost"), object: nil)
         loadLayout()
         setupNavBar()
     }
@@ -73,23 +60,29 @@ class MyEventsViewController: UIViewController, UITabBarControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func getPosts(events: [String]) {
-        for event in events {
+    @objc func loadAllEvents() {
+        if let currUser = Auth.auth().currentUser {
+            let uid = currUser.uid
             firstly {
-                return FirebaseAPIClient.getPost(id: event)
-                }.then { post -> Void in
-                    var index = self.postsInterested.index(where: { (item) in item.id == post.id})
-                    if index == nil {
-                        self.postsInterested.append(post)
-                        firstly {
-                            return Utils.getImage(withUrl: post.imageUrl!)
-                            }.then { image -> Void in
-                                post.image = image
+                return RestAPIClient.fetchUser(id: uid)
+            }.done { currentUser in
+                firstly {
+                    return RestAPIClient.fetchPosts()
+                }.done { posts in
+                    self.postsInterested.removeAll()
+                    if currentUser.stringsPostsInterested != nil {
+                        for post in posts {
+                            if (currentUser.stringsPostsInterested?.contains(post.id!))! {
+                                self.postsInterested.append(post)
+                            }
                         }
+                    self.eventsTableView.reloadData()
                     }
+                }
             }
         }
     }
+
 }
 
 extension MyEventsViewController: UITableViewDataSource, UITableViewDelegate{
@@ -115,14 +108,18 @@ extension MyEventsViewController: UITableViewDataSource, UITableViewDelegate{
         cell.postMemberName.text = postInCell.poster
         cell.postNumberInterested.text = "\(postInCell.numInterested!) interested"
         
-        Utils.getImage(withUrl: postInCell.imageUrl!).then { img in
+        firstly {
+            return Utils.getImage(withUrl: postInCell.imageUrl!)
+        }.done { img in 
             cell.postImageView?.image = img
         }
         
         firstly {
-            return SocialsUser.getUser(withId: postInCell.posterId!)
-        }.then { user in
-            Utils.getImage(withUrl: user.imageUrl!).then { img in
+            return RestAPIClient.fetchUser(id: postInCell.posterId!)
+        }.done { user in
+            firstly {
+                return Utils.getImage(withUrl: user.imageUrl!)
+            }.done { img in
                 cell.posterImageView?.image = img
             }
         }
@@ -138,7 +135,7 @@ extension MyEventsViewController: UITableViewDataSource, UITableViewDelegate{
     {
         return 200.0;
     }
-        
+    
 }
     /*
      // MARK: - Navigation

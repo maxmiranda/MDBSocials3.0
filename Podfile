@@ -11,11 +11,12 @@ pod ‘Firebase/Core’
 pod ‘Firebase/Database’
 pod ‘Firebase/Auth’
 pod ‘Firebase/Storage’
+pod 'SwiftyBeaver'
 pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 pod 'HanekeSwift', :git => 'https://github.com/Haneke/HanekeSwift.git', :branch => 'feature/swift-3'
 pod 'Alamofire', '~> 4.0'
 pod 'SwiftyJSON'
-pod "PromiseKit", "~> 4.0"
+pod "PromiseKit", "~> 6.0"
 pod 'PromiseKit/Alamofire'
 pod 'ObjectMapper'
 pod 'LocationPicker'

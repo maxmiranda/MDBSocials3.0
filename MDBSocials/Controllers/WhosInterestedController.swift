@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class WhosInterestedController: UIViewController {
     var post : Post!
@@ -39,12 +40,15 @@ class WhosInterestedController: UIViewController {
         if userIDArray != nil {
             for id in userIDArray!{
                 if id != "Hi" {
-                    FirebaseAPIClient.fetchUser(id: id).then {user in
+                    firstly {
+                        return RestAPIClient.fetchUser(id: id)
+                    }.done { user in
                         self.usersArray.append(user)
-                        }.then {
-                            self.tableView.reloadData()
                     }
                 }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.tableView.reloadData()
             }
         }
     }
@@ -71,11 +75,12 @@ extension WhosInterestedController: UITableViewDelegate, UITableViewDataSource {
         cell.awakeFromNib()
         cell.postMemberName.text = user.name!
         cell.postEventName.text = user.username!
-        Utils.getImage(withUrl: user.imageUrl!).then { picture in
-            DispatchQueue.main.async {
-                cell.posterImageView.image = picture
-            }
+        firstly {
+            return Utils.getImage(withUrl: user.imageUrl!)
+        }.done { picture in
+            cell.posterImageView.image = picture
         }
+
         cell.isUserInteractionEnabled = false
         return cell
     }

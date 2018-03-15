@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import MapKit
+import PromiseKit
 
 class DetailViewController: UIViewController {
 
@@ -16,6 +17,7 @@ class DetailViewController: UIViewController {
     var memberName : UILabel!
     var eventDate : UILabel!
     var eventDescription : UILabel!
+    var locationWeather : UILabel!
     var numInterested : UIButton!
     var interestedButton : UIButton!
     var exitButton: UIButton!
@@ -25,6 +27,8 @@ class DetailViewController: UIViewController {
     var currentUser: SocialsUser?
     var cUserId : String!
     
+    var weather : String!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if let currUser = Auth.auth().currentUser {
@@ -39,6 +43,7 @@ class DetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        queryWeather()
     }
     
     override func didReceiveMemoryWarning() {
@@ -90,6 +95,11 @@ class DetailViewController: UIViewController {
         eventDate.text = "Date: \(post.dateString!)"
         eventDate.font = UIFont(name: "Helvetica", size: 16)
         view.addSubview(eventDate)
+        
+        locationWeather = UILabel(frame: CGRect(x: 40,y:410,width:view.frame.width/2, height:40))
+        locationWeather.font = UIFont(name: "Helvetica", size: 16)
+        view.addSubview(locationWeather)
+        
         //Open Settings on Mike's iPhone and navigate to General -> Device Management, then select your Developer App certificate to trust it.
         eventDescription = UILabel(frame: CGRect(x: 40,y:430,width:view.frame.width/2 - 80, height: view.frame.width * 0.3))
         eventDescription.numberOfLines = 3
@@ -152,6 +162,14 @@ class DetailViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         }
         interestedClicked = true
+    }
+    
+    func queryWeather(){
+        firstly {
+            return DarkSkyAPI.getCurrentWeather(latitude: post.latitude!, longitude: post.longitude!)
+        }.done { weather in
+            self.locationWeather.text! = "Weather: \(weather)°"
+        }
     }
 }
 

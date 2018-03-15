@@ -23,31 +23,14 @@ class FeedViewController: UIViewController, UITabBarControllerDelegate {
     var storage: StorageReference = Storage.storage().reference()
     var navBar: UINavigationBar!
     var postSelected : Post!
-    var postsLoaded = false
     
     override func viewWillAppear(_ animated: Bool) {
-        if !postsLoaded {
-            FirebaseAPIClient.fetchPosts(withBlock: { posts in
-                var posts = posts.sorted(by: {$0.date! < $1.date!})
-                var i = posts.count - 1
-                while i >= 0 {
-                    if posts[i].date!.timeIntervalSinceNow < 0.0 {
-                        posts.remove(at: i)
-                    }
-                    i = i-1
-                }
-                self.posts.removeAll()
-                self.posts = posts
-                self.postTableView.reloadData()
-            })
-            postsLoaded = true
-        } else {
-            postTableView.reloadData()
-        }
+        loadAllPosts()
         setupNavBar()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(loadAllPosts), name: NSNotification.Name(rawValue: "newPost"), object: nil)
         mainTabBarVC = tabBarController as! MainTabBarController
         setupNavBar()
         setupTableView()
@@ -83,12 +66,29 @@ class FeedViewController: UIViewController, UITabBarControllerDelegate {
     
     func setupTableView() {
         edgesForExtendedLayout = []
-        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: view.frame.height)
+        let frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: view.frame.height - mainTabBarVC.tabBar.frame.size.height - 20)
         postTableView = UITableView(frame: frame)
         postTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "post")
         postTableView.delegate = self
         postTableView.dataSource = self
         view.addSubview(postTableView)
+    }
+    @objc func loadAllPosts() {
+        firstly {
+            return RestAPIClient.fetchPosts()
+        }.done { posts in
+            var posts = posts.sorted(by: {$0.date! < $1.date!})
+            var i = posts.count - 1
+            while i >= 0 {
+                if posts[i].date!.timeIntervalSinceNow < 0.0 {
+                    posts.remove(at: i)
+                }
+                i = i-1
+            }
+            self.posts.removeAll()
+            self.posts = posts
+            self.postTableView.reloadData()
+        }
     }
 }
 
@@ -106,14 +106,18 @@ extension FeedViewController: UITableViewDataSource, UITableViewDelegate {
         cell.postNumberInterested.text = "\(postInCell.numInterested!) interested"
 
         
-        Utils.getImage(withUrl: postInCell.imageUrl!).then { img in
+        firstly {
+            return Utils.getImage(withUrl: postInCell.imageUrl!)
+        }.done { img in
             cell.postImageView?.image = img
         }
     
         firstly {
-            return SocialsUser.getUser(withId: postInCell.posterId!)
-        }.then { user in
-            Utils.getImage(withUrl: user.imageUrl!).then { img in
+            return RestAPIClient.fetchUser(id: postInCell.posterId!)
+        }.done { user in
+            firstly {
+                return Utils.getImage(withUrl: user.imageUrl!)
+            }.done { img in
                 cell.posterImageView?.image = img
             }
         }

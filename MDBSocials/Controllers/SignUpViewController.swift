@@ -27,12 +27,12 @@ class SignUpViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
-        Auth.auth().addStateDidChangeListener { auth, user in
+        /*Auth.auth().addStateDidChangeListener { auth, user in
             if let user = user { //need to check that this is functional first
                 // User is signed in. Show home screen
-               // self.performSegue(withIdentifier: "toFeedFromSignup", sender: self)
+               self.performSegue(withIdentifier: "toFeedFromSignup", sender: self)
             }
-        }
+        }*/
 
         // Do any additional setup after loading the view.
         setupTitle()
